@@ -1,0 +1,38 @@
+# Awesome Commercial Roofers: static site, no build step.
+[build]
+  publish = "."
+
+# ---------------------------------------------------------------------------
+# Caching. Deliberately SHORT while the site is in review, because the
+# placeholder images get replaced under the same filenames. At launch, switch
+# /assets/* to `max-age=31536000, immutable` and add a content hash to the
+# asset filenames, or replaced images will be served stale for a year.
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    # 'unsafe-inline' on script-src covers the JSON-LD blocks, and on style-src
+    # the inline style attributes the design system uses for --pos and scrims.
+    # Tighten to hashes at launch if the client wants a stricter policy.
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# Canonical host: www to apex.
+[[redirects]]
+  from = "https://www.awesome-commercial-roofers.com/*"
+  to = "https://awesome-commercial-roofers.com/:splat"
+  status = 301
+  force = true

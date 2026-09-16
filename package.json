@@ -1,0 +1,15 @@
+{
+  "name": "awesome-commercial-roofers",
+  "private": true,
+  "description": "Static site for Awesome Commercial Roofers, Farmington NM. No build step; npm is only here for the QA harness.",
+  "scripts": {
+    "serve": "python3 -m http.server 8787",
+    "qa": "python3 tools/qa.py",
+    "qa:visual": "node tools/visual-qa.js",
+    "build:schema": "python3 tools/build-faq-schema.py",
+    "build:assumptions": "python3 tools/build-assumptions.py"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.1"
+  }
+}
