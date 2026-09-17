@@ -143,7 +143,15 @@
         var t = r.querySelector('.hx-proc-title');
         if (t) t.classList.toggle('is-active', k === i);
       });
-      if (img && shots[i]) img.src = shots[i];
+      if (img && shots[i]) {
+        img.src = shots[i];
+        // Steps 3 to 5 are still placeholders; keep the badge honest as the
+        // rail advances rather than only on the first frame.
+        var ph = (img.getAttribute('data-proc-placeholders') || '')
+          .split(',').filter(Boolean).map(Number);
+        if (ph.indexOf(i) === -1) img.removeAttribute('data-placeholder');
+        else img.setAttribute('data-placeholder', '');
+      }
       restart();
     };
     rows.forEach(function (r, k) {

@@ -1,57 +1,52 @@
 /* ==========================================================================
    Awesome Commercial Roofers
    Built on the roofing-website-v3 design system.
-   Brand inputs: white, yellow and black, matched to the live site. Derived from there.
+   Brand inputs: forest green and gold, as requested on the intake form.
    Theme contract verified: see /THEME-CONTRACT.md for the measured ratios.
    ========================================================================== */
 
 :root{
   /* ---- BRAND INPUTS: the only lines a new client changes ----
-     Matched to the live site at awesome-commercial-roofers.com:
-     #ffb400 yellow (91 uses), #0d0d0d near-black, white, #737373 grey. ---- */
-  --dark:#12100A;            /* their #0d0d0d, tinted toward the brand amber */
-  --light:#FAF7F0;           /* reads as white; tinted, never #ffffff */
-  --accent:#FFB400;          /* exact brand yellow, unchanged from the live site */
-  --ink:#14110B;
+     Forest green and gold, as James asked for on the intake form. ---- */
+  --dark:#13351F;            /* forest green */
+  --light:#EEF2EA;           /* page ground, green-tinted, never #fff */
+  --accent:#C8922C;          /* gold */
+  --ink:#141A16;
   --font-display:'Anton',sans-serif;
   --font-body:'Archivo','Helvetica Neue',sans-serif;
 
   /* ---- DERIVED ---- */
-  --dark-deep:#0A0906;
-  --dark-base:#050403;
-  --accent-deep:#8A6100;     /* stepped down until 4.5:1 on --light. The site's
-                                own #996C00 measures 4.36:1 and just misses. */
-  --light-raised:#FFFDF8;
-  --accent-ink:#12100A;      /* white on this yellow is 1.78:1. This is 10.67:1. */
+  --dark-deep:#0C2415;       /* --dark darkened ~15% L */
+  --dark-base:#081A0F;       /* hero base and overlay floor */
+  --accent-deep:#8B631F;     /* stepped down until 4.75:1 on --light */
+  --light-raised:#F7FAF5;
+  --accent-ink:#0C2415;      /* white on this gold is 2.76:1. This is 5.95:1. */
 
-  /* on-dark text and lines: the --light triplet (250,247,240), never white alpha */
-  --on-dark-1:rgba(250,247,240,.92);
-  --on-dark-2:rgba(250,247,240,.78);
-  --on-dark-3:rgba(250,247,240,.55);
-  --on-dark-line:rgba(250,247,240,.24);
-  --on-dark-fill:rgba(250,247,240,.10);
-  --on-dark-faint:rgba(250,247,240,.04);
+  /* on-dark text and lines: the --light triplet (238,242,234), never white alpha */
+  --on-dark-1:rgba(238,242,234,.92);
+  --on-dark-2:rgba(238,242,234,.78);
+  --on-dark-3:rgba(238,242,234,.55);
+  --on-dark-line:rgba(238,242,234,.24);
+  --on-dark-fill:rgba(238,242,234,.10);
+  --on-dark-faint:rgba(238,242,234,.04);
 
-  /* on-light lines: the --dark triplet (18,16,10), never grey */
-  --line:rgba(18,16,10,.20);
-  --line-row:rgba(18,16,10,.26);
-  --line-soft:rgba(18,16,10,.12);
-  --dark-scrim-1:rgba(5,4,3,.86);
-  --dark-scrim-2:rgba(5,4,3,.46);
-  --dark-scrim-3:rgba(5,4,3,.42);
-  --dark-scrim-4:rgba(5,4,3,.78);
-  --dark-scrim-5:rgba(5,4,3,.96);
-  --dark-veil:rgba(18,16,10,.60);
-  --dark-veil-soft:rgba(18,16,10,.16);
-  --nav-stuck-a:rgba(18,16,10,.98);
-  --nav-stuck-b:rgba(18,16,10,.92);
+  /* on-light lines: the --dark triplet (19,53,31), never grey */
+  --line:rgba(19,53,31,.20);
+  --line-row:rgba(19,53,31,.26);
+  --line-soft:rgba(19,53,31,.12);
+  --dark-scrim-1:rgba(8,26,15,.86);
+  --dark-scrim-2:rgba(8,26,15,.46);
+  --dark-scrim-3:rgba(8,26,15,.42);
+  --dark-scrim-4:rgba(8,26,15,.78);
+  --dark-scrim-5:rgba(8,26,15,.96);
+  --dark-veil:rgba(19,53,31,.60);
+  --dark-veil-soft:rgba(19,53,31,.16);
+  --nav-stuck-a:rgba(19,53,31,.98);
+  --nav-stuck-b:rgba(19,53,31,.92);
 
-  --muted:#6B6459;           /* the only grey in the system, 5.46:1 on --light */
-  /* The reference system's checkmark green was harmonious on a forest-green
-     brand. On white/yellow/black it reads as a stray third hue, so the
-     affirmative colour is the brand yellow on dark and its deep step on light. */
-  --confirm:var(--accent);        /* 10.67:1 on --dark */
-  --confirm-deep:var(--accent-deep); /* 5.18:1 on --light */
+  --muted:#5B6660;           /* the only grey in the system, 5.27:1 on --light */
+  --confirm:#8FBF7A;         /* checkmarks on dark, 6.36:1 on --dark */
+  --confirm-deep:#5E8C48;    /* checkmarks on light, 3.48:1 */
 
   --wrap:1120px;
   --wrap-wide:1320px;
@@ -68,16 +63,17 @@
   --r-process:32px;
   --r-pill:999px;
 
-  --sh-card:0 4px 16px rgba(10,9,6,.08);
-  --sh-lift:0 18px 38px rgba(10,9,6,.18);
-  --sh-img:0 20px 48px -18px rgba(18,16,10,.45);
-  --sh-section:0 24px 48px -20px rgba(18,16,10,.45);
-  --sh-inset:0 20px 40px -26px rgba(5,4,3,.9);
-  --sh-sticky:0 14px 40px rgba(18,16,10,.32);
-  --sh-handle:0 6px 18px rgba(5,4,3,.45);
+  --sh-card:0 4px 16px rgba(12,36,21,.06);
+  --sh-lift:0 18px 38px rgba(12,36,21,.15);
+  --sh-img:0 20px 48px -18px rgba(19,53,31,.4);
+  --sh-section:0 24px 48px -20px rgba(19,53,31,.4);
+  --sh-inset:0 20px 40px -26px rgba(8,26,15,.9);
+  --sh-sticky:0 14px 40px rgba(19,53,31,.28);
+  --sh-handle:0 6px 18px rgba(8,26,15,.45);
 
-  --course-grid:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='52'%3E%3Cg fill='none' stroke='%23FAF7F0' stroke-opacity='.13' stroke-width='1'%3E%3Cpath d='M0 .5H128M0 26.5H128M0 51.5H128'/%3E%3Cpath d='M32 0V26M96 0V26M0 26V52M64 26V52M128 26V52'/%3E%3C/g%3E%3C/svg%3E");
+  --course-grid:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='52'%3E%3Cg fill='none' stroke='%23EEF2EA' stroke-opacity='.13' stroke-width='1'%3E%3Cpath d='M0 .5H128M0 26.5H128M0 51.5H128'/%3E%3Cpath d='M32 0V26M96 0V26M0 26V52M64 26V52M128 26V52'/%3E%3C/g%3E%3C/svg%3E");
 }
+
 
 
 /* ---------- base ---------- */
@@ -134,17 +130,17 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 .hx-dark-fx > *{position:absolute;pointer-events:none}
 .hx-dark-fx [data-glare]{width:48%;height:120%;border-radius:50%}
 .hx-dark-fx [data-glare="1"]{top:-30%;left:-12%;
-  background:radial-gradient(closest-side,rgba(250,247,240,.26),rgba(250,247,240,.10) 45%,transparent);
+  background:radial-gradient(closest-side,rgba(238,242,234,.26),rgba(238,242,234,.10) 45%,transparent);
   will-change:transform;animation:hxGlare 26s ease-in-out infinite}
 .hx-dark-fx [data-glare="2"]{bottom:-34%;right:-14%;
-  background:radial-gradient(closest-side,rgba(138,97,0,.30),rgba(138,97,0,.12) 46%,transparent);
+  background:radial-gradient(closest-side,rgba(139,99,31,.30),rgba(139,99,31,.12) 46%,transparent);
   will-change:transform;animation:hxGlare2 34s ease-in-out infinite}
 /* Documented white-alpha exception 1 of 2: specular sheen, capped at .07 */
 .hx-dark-fx [data-sheen]{inset:0;background:linear-gradient(160deg,
-  rgba(255,255,255,.07) 0%,transparent 42%,rgba(5,4,3,.22) 100%)}
+  rgba(255,255,255,.07) 0%,transparent 42%,rgba(8,26,15,.22) 100%)}
 .hx-dark-fx [data-course]{inset:0;background-image:var(--course-grid);background-size:128px 52px}
 .hx-dark-fx [data-vignette]{inset:0;background:linear-gradient(to bottom,
-  rgba(5,4,3,.24) 0%,transparent 24%,transparent 74%,rgba(5,4,3,.28) 100%)}
+  rgba(8,26,15,.24) 0%,transparent 24%,transparent 74%,rgba(8,26,15,.28) 100%)}
 .hx-sec--dark > .hx-wrap{position:relative;z-index:1}
 @keyframes hxGlare {0%{transform:translate3d(-14%,-8%,0)}50%{transform:translate3d(14%,10%,0)}100%{transform:translate3d(-14%,-8%,0)}}
 @keyframes hxGlare2{0%{transform:translate3d(12%,12%,0)}50%{transform:translate3d(-12%,-10%,0)}100%{transform:translate3d(12%,12%,0)}}
@@ -155,7 +151,7 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 @property --gradient-percent{syntax:"<percentage>";initial-value:5%;inherits:false}
 /* @property initial-value cannot reference a custom property, so this one hex
    tracks --accent by hand. It is the only hex outside the token block. */
-@property --gradient-shine{syntax:"<color>";initial-value:#FFB400;inherits:false}
+@property --gradient-shine{syntax:"<color>";initial-value:#C8922C;inherits:false}
 
 .shiny-cta{
   --shiny-bg:var(--dark);
@@ -236,7 +232,7 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 .hx-nav{position:fixed;inset:0 0 auto;z-index:50;padding:14px var(--pad-x);
   transition:background .35s ease,box-shadow .35s ease}
 .hx-nav.is-stuck{background:linear-gradient(180deg,var(--nav-stuck-a),var(--nav-stuck-b));
-  box-shadow:0 8px 30px rgba(5,4,3,.30)}
+  box-shadow:0 8px 30px rgba(8,26,15,.30)}
 .hx-nav-in{max-width:var(--wrap-wide);margin:0 auto;display:flex;align-items:center;gap:26px}
 .hx-logo{display:grid;gap:1px;line-height:1;margin-right:auto}
 .hx-logo b{font:400 clamp(19px,2vw,25px)/1 var(--font-display);text-transform:uppercase;
@@ -287,10 +283,10 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 .hx-hero-scrim{position:absolute;inset:0;background:
   linear-gradient(180deg,var(--dark-scrim-1) 0%,var(--dark-scrim-2) 26%,
     var(--dark-scrim-3) 52%,var(--dark-scrim-4) 82%,var(--dark-scrim-5) 100%),
-  linear-gradient(90deg,rgba(5,4,3,.62) 0%,rgba(5,4,3,.46) 32%,
-    rgba(5,4,3,.20) 54%,transparent 76%)}
+  linear-gradient(90deg,rgba(8,26,15,.62) 0%,rgba(8,26,15,.46) 32%,
+    rgba(8,26,15,.20) 54%,transparent 76%)}
 .hx-hero-inner{position:relative;z-index:2;padding:132px var(--pad-x) 72px;color:var(--on-dark-1);
-  text-shadow:0 2px 4px rgba(5,4,3,.7),0 4px 22px rgba(5,4,3,.6)}
+  text-shadow:0 2px 4px rgba(8,26,15,.7),0 4px 22px rgba(8,26,15,.6)}
 .hx-hero-inner h1{color:var(--light);font-size:clamp(2.35rem,4.8vw,4rem);max-width:17ch;margin:14px 0 10px}
 .hx-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:0 0 18px;padding:0;
   max-width:none;font-size:.86rem;letter-spacing:.06em;color:var(--on-dark-1)}
@@ -319,7 +315,7 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 .hx-proof .hx-panel-t{padding:20px 22px;position:relative}
 .hx-proof strong{display:block;font:400 32px/1.05 var(--font-display);color:var(--accent);
   position:relative;z-index:1}
-.hx-proof span{font-size:13px;color:var(--on-dark-2);position:relative;z-index:1}
+.hx-proof .hx-panel-t > span{font-size:13px;color:var(--on-dark-2);position:relative;z-index:1}
 @media (max-width:1120px){.hx-proof{display:none}}
 @media (max-width:620px){.hx-trust{grid-template-columns:1fr}
   .hx-hero-ctas{flex-direction:column;align-items:stretch}
@@ -381,7 +377,7 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
   overflow:hidden;background:var(--dark-base)}
 .hx-feature-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hx-feature::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(to top,rgba(10,9,6,.88),rgba(10,9,6,.34) 52%,rgba(10,9,6,.52))}
+  background:linear-gradient(to top,rgba(12,36,21,.88),rgba(12,36,21,.34) 52%,rgba(12,36,21,.52))}
 .hx-feature-in{position:relative;z-index:2;width:100%;max-width:var(--wrap);margin:0 auto;
   padding:var(--pad-y) var(--pad-x);display:grid;grid-template-columns:1.25fr .9fr;
   gap:40px;align-items:end}
@@ -505,7 +501,7 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
   background-position:center;padding:calc(var(--pad-y) * 1.1) var(--pad-x);
   color:var(--light);text-align:center}
 .hx-parallax::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,
-  rgba(5,4,3,.82),rgba(5,4,3,.72) 45%,rgba(5,4,3,.88))}
+  rgba(8,26,15,.82),rgba(8,26,15,.72) 45%,rgba(8,26,15,.88))}
 .hx-parallax::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
   background:var(--accent)}
 .hx-parallax > *{position:relative;z-index:1;max-width:760px;margin-inline:auto}
@@ -627,8 +623,38 @@ html[data-motion="reduced"] .accent-cta::after,
 html[data-motion="reduced"] .shiny-cta,
 html[data-motion="reduced"] .shiny-cta::after{animation:none!important}
 
-/* ---------- placeholder marker: remove with the real photography ---------- */
-[data-placeholder]{position:relative}
-[data-placeholder]::after{content:"PLACEHOLDER";position:absolute;top:10px;left:10px;z-index:3;
-  font:700 9px/1 var(--font-body);letter-spacing:.2em;padding:6px 9px;border-radius:var(--r-pill);
-  background:var(--accent);color:var(--accent-ink);pointer-events:none}
+/* ---------- invented content marker -------------------------------------
+   Every value the client has not confirmed is shown with a flag, so nothing
+   invented can be mistaken for a fact during review. Delete the .flag spans
+   (not just this rule) as each fact is confirmed.
+   ------------------------------------------------------------------------ */
+.flag{
+  font-style:normal;
+  text-decoration:underline;
+  text-decoration-style:dotted;
+  text-decoration-thickness:2px;
+  text-underline-offset:.22em;
+  text-decoration-color:var(--accent-deep);
+}
+.flag > i{
+  font-style:normal;
+  /* hold the marker readable inside 40px display figures rather than scaling with them */
+  font-size:clamp(.72rem,.55em,1rem);
+  margin-right:.32em;
+  vertical-align:.06em;
+  text-decoration:none;
+}
+.hx-sec--dark .flag,.hx-hero .flag,.hx-feature .flag,
+.hx-parallax .flag,.hx-foot .flag{text-decoration-color:var(--accent)}
+
+/* ---------- placeholder marker: remove with the real photography ----------
+   Marked with an outline rather than a positioned ::after badge. The badge
+   needed position:relative, which at equal specificity overrode the absolute
+   positioning on .hx-hero-bg and .hx-feature-bg and dropped those images into
+   flow. An outline changes no layout and works on replaced elements, which a
+   ::after on an <img> does not render on anyway. The slot's brief is already
+   drawn into the placeholder image itself. */
+img[data-placeholder]{
+  outline:3px dashed var(--accent);
+  outline-offset:-8px;
+}

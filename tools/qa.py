@@ -16,7 +16,7 @@ body = css.replace(root, "")
 # #000/#fff inside mask-image are alpha masks; --gradient-shine is the documented
 # @property exception (initial-value takes no var()).
 stray = [h for h in re.findall(r"#[0-9a-fA-F]{3,8}\b", body)
-         if h.lower() not in ("#000", "#fff", "#ffb400")]
+         if h.lower() not in ("#000", "#fff", "#c8922c")]
 # #000/#fff inside mask-image are alpha masks, not surface colour
 if stray: fail(f"raw hex outside the token block: {sorted(set(stray))}")
 
@@ -132,7 +132,17 @@ if faq:
         if not flat(a): fail(f"blank FAQ answer: {flat(q)[:50]}")
 
 tokens = re.findall(r"\{\{CONFIRM:[^}]*\}\}", doc)
-print(f"\n{len(tokens)} CONFIRM tokens on the page (each one is a fact the client owes us)\n")
+flags = re.findall(r'<span class="flag" data-flag="([^"]*)">', doc)
+for f_ in flags:
+    if not f_.strip():
+        fail("a flag carries an empty data-flag, so the punch list cannot name what is missing")
+# Invented stand-in content is fine for review and fatal at launch.
+launch = "--launch" in sys.argv
+if launch and (flags or tokens):
+    fail(f"not launch-ready: {len(flags)} invented values and {len(tokens)} unfilled tokens remain")
+
+print(f"\n{len(tokens)} CONFIRM tokens and {len(flags)} invented flagged values on the page.")
+print("Every flagged value is a guess. Run with --launch to fail the build while any remain.\n")
 for w in warns: print(f"  WARN  {w}")
 for f in fails: print(f"  FAIL  {f}")
 print(f"\n{len(fails)} failures, {len(warns)} warnings")

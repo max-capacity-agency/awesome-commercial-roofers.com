@@ -1,64 +1,77 @@
 # Asset manifest
 
-## Why every image is a placeholder
+Every image on this site is temporary. 12 are openly licensed stock standing in
+for the real thing; 13 slots have no usable stock at all and carry a designed
+placeholder that states the shot required. See [SHOT-LIST.md](SHOT-LIST.md).
 
-The shared Google Drive folder is not link-shared, so it can only be read through an
-authenticated connector, one file at a time, as base64. Pulling ~100 multi-megabyte PNGs
-that way was not workable, so the build ships generated placeholders at the exact aspect
-ratios the layout needs, each labelled with its slot and its brief.
+## Why the Drive images are not used
 
-**If you want the Drive images wired in:** set the folder to "Anyone with the link can
-view" and say so. They can then be fetched, converted to WebP, resized to each slot's
-ratio and dropped in, in one pass.
+The shared Drive folder is not link-shared, so it can only be read one file at a time
+through an authenticated connector, as base64. At roughly 2MB per PNG that is far too
+expensive to pull a useful number of them.
 
-## The harder problem, which sharing does not fix
+**The one-click fix:** set the folder to "Anyone with the link can view". The commercial
+images can then be pulled, cropped to each slot and dropped in, in a single pass.
 
-The Drive library is a **residential** roofing set. Counting what is in it:
+Worth knowing either way: the library is a **residential** set. Of roughly 100 files, only
+about nine are commercial or flat-roofing, and none shows a coating restoration, which is
+the actual service being sold.
 
-| Category | Roughly | Usable on this site |
-| --- | --- | --- |
-| Residential shingle roofs, before/after pairs, transformations | ~45 files | No |
-| Siding projects | ~12 files | No |
-| Windows | ~7 files | No |
-| Service tiles for gutters, skylights, storm damage, new construction | ~10 files | No |
-| Hero videos, all residential drone footage | 5 files | No |
-| Commercial or flat roofing | ~9 files | Maybe, needs review |
-| Generic roofer-at-work shots | ~10 files | Some, if no shingles are visible |
-| `Roofing logo.png` | 1 file | Unknown, appears to be from another project |
+## Stock currently in place
 
-This is a commercial-only roof restoration company. A residential shingle roof in the hero
-tells a property manager they are on the wrong site inside a second. Of roughly 100 files,
-under 20 are plausibly usable, and none shows a coating restoration, which is the actual
-service being sold.
+All openly licensed and cleared for commercial use. Non-commercial licences were rejected
+outright, which ruled out most of what the searches returned.
 
-That is why the hero is `hero-style: static` rather than `video`. There is no commercial
-video in the library, and the residential drone footage would misrepresent the trade.
+| Slot | Title | Creator | Licence | Link |
+| --- | --- | --- | --- | --- |
+| `faq` | Roof Work | Editor B | CC BY 2.0 | [source](https://www.flickr.com/photos/11018968@N00/2877155196) |
+| `featured-project` | The Old Foundry - Bradley Road, Stourbridge | ell brown | CC BY 2.0 | [source](https://www.flickr.com/photos/39415781@N06/8702051783) |
+| `og-home` | USACE builds sustainable distribution center for DLA | USACE Europe District | CC BY 2.0 | [source](https://www.flickr.com/photos/34728058@N08/6020851217) |
+| `owner-james` | A new generation of industrial leaders | DFID - UK Department for International Development | CC BY 2.0 | [source](https://www.flickr.com/photos/14214150@N02/8756741875) |
+| `parallax-fourcorners` | BLM Winter Bucket List #29: Dripping Springs Natural Area within the Organ Mountains-Desert Peaks National Monument, New Mexico, for Easy Hikes and Wildlife Viewing Year-Round | mypubliclands | CC BY 2.0 | [source](https://www.flickr.com/photos/91981596@N06/15809627364) |
+| `service-maintenance` | Roof Inspection | EpicFireworks | CC BY 2.0 | [source](https://www.flickr.com/photos/30048753@N05/4583085283) |
+| `service-metal` | Industrial Roof. | Lawrence Rayner | CC BY 2.0 | [source](https://www.flickr.com/photos/55222989@N07/5134672003) |
+| `service-repair` | Savanna Army Depot | Phil Roeder | CC BY 2.0 | [source](https://www.flickr.com/photos/88876166@N00/14928341554) |
+| `service-restoration` | Endike Primary - 16th December 2011 (11) | BSFinHull | CC BY-SA 2.0 | [source](https://www.flickr.com/photos/67000597@N07/6832947206) |
+| `step-1` | Overlap! Concrete and roofing contractors 24-Aug-15  | wbaiv | CC BY-SA 2.0 | [source](https://www.flickr.com/photos/9998127@N06/53961577567) |
+| `step-2` | 27 Roof inspection | cjlloyd_uk | CC BY 2.0 | [source](https://www.flickr.com/photos/96168186@N02/53737796908) |
+| `system-foam` | Raised ceiling, spray foam insulation | Brock Builders | CC BY 2.0 | [source](https://www.flickr.com/photos/39062553@N06/3634076844) |
 
-## Candidate Drive files, if you want them used as interim stand-ins
+Attribution for CC BY and CC BY-SA images is required wherever they remain. They are
+placeholders, so the intention is that they are gone before launch and the attribution
+question disappears with them. If any survives to launch, credit it in the page footer.
 
-These are the only ones worth reviewing. All need captioning as generic system imagery
-rather than as this client's work, per the launch decision to hold until real proof exists.
+## Slots with no usable stock
 
-| Slot | Candidate Drive file |
-| --- | --- |
-| Hero | `Commercial : flat roofing service.png` |
-| Featured project | `Commercial roofing 1.png` … `Commercial roofing 5.png` |
-| Before / after pair 1 | `Commercial roofing before.png` + `Commercial roofing after.png` |
-| Before / after (split, non-interactive) | `Commercial before after split.png` |
-| Owner | `Roofer consulting business owner.png` |
-| Process, survey step | `Inspection.png`, `Inspection video.mp4` |
-| Service: maintenance | `Maintenance programs service.png` |
+- `ba-1-after`
+- `ba-1-before`
+- `ba-2-after`
+- `ba-2-before`
+- `ba-3-after`
+- `ba-3-before`
+- `hero`
+- `step-3`
+- `step-4`
+- `step-5`
+- `system-acrylic`
+- `system-metal`
+- `system-silicone`
 
-Nothing in the library suits the four systems tabs, the metal restoration service card, or
-the Four Corners parallax break.
+Two reasons these stayed as placeholders:
 
-## Generated placeholders
+**The before/after pairs cannot be faked.** A slider needs the same roof twice, from the
+same angle. Stock cannot supply that, and a mismatched pair reads as two different
+buildings the moment anyone drags the handle, which destroys the credibility of the one
+section that exists to prove the work.
 
-`tools/` does not hold the generator; it lives in the session scratchpad because it is a
-one-off. Every placeholder is a WebP carrying its slot name, its brief, and its pixel
-dimensions, sized so the baked label renders at roughly 12 to 20px on screen whatever the
-slot. Total weight of all 25 is 668KB.
+**The hero has no honest candidate.** It is the single most important image on the site.
+A wrong one is worse than a labelled blank, and nothing in the openly licensed pools was
+a commercial building with a low-slope roof in anything like the right setting.
 
-Any image still showing a `PLACEHOLDER` badge in the corner is wired up in the layout but
-carries no real content. The badge comes from `[data-placeholder]` in `styles.css`; delete
-that attribute from the markup as each real photo lands.
+## Where stock came from
+
+Openverse (`api.openverse.org`), which aggregates Flickr, Wikimedia and others with
+licence metadata. Unsplash and Pexels both bot-block this environment, so neither was
+reachable. Openverse has no real commercial-roofing corpus: the searches returned
+heritage brickwork, sports cars and sheet music, which is why so few slots could be
+filled well.

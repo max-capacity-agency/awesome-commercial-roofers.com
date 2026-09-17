@@ -10,6 +10,12 @@ from collections import OrderedDict
 
 SECTION = re.compile(r"<!-- =====\s*(.*?)\s*=+ -->")
 TOKEN = re.compile(r"\{\{CONFIRM:\s*(.*?)\}\}", re.S)
+# Invented stand-in content carries the same debt as a bare token: the value
+# shown is a guess and the data-flag says what the client still owes.
+FLAG = re.compile(
+    r'<span class="flag" data-flag="(?P<need>[^"]*)">'
+    r'(?:<i>\U0001F6A9</i>|\s*\U0001F6A9\s*)'
+    r'(?P<shown>.*?)</span>', re.S)
 
 def plain(fragment, mid_tag=False):
     # A slice can begin inside a tag, which would leak attribute text into the
@@ -35,12 +41,15 @@ def collect(path):
     src = open(path, encoding="utf-8").read()
     cuts = [(m.start(), m.group(1).strip(" =")) for m in SECTION.finditer(src)]
     found = OrderedDict()
-    for m in TOKEN.finditer(src):
+    for m in list(TOKEN.finditer(src)) + list(FLAG.finditer(src)):
         sec = "Head / nav / footer"
         for pos, name in cuts:
             if pos < m.start():
                 sec = name
-        key = (sec, plain(m.group(1)), context(src, m))
+        gd = m.groupdict()
+        need = plain(gd["need"]) if "need" in gd else plain(m.group(1))
+        shown = plain(gd.get("shown", "")) if "shown" in gd else ""
+        key = (sec, need, context(src, m), shown)
         found.setdefault(key, 0)
         found[key] += 1
     return found
@@ -55,10 +64,10 @@ total = sum(n for page in rows.values() for n in page.values())
 uniq = sum(len(page) for page in rows.values())
 
 out = ["# Assumptions to confirm", "",
-       "Every fact below is wrapped in a `{{CONFIRM: }}` token in the markup. The",
-       "sentence around it already reads correctly; only the fact is missing. Nothing",
-       "here was invented, estimated from market data, or carried over from another",
-       "client.", "",
+       "**Every value in the middle column is invented.** None of it came from the",
+       "client. Each one is shown on the page behind a flag so it cannot be mistaken",
+       "for a confirmed fact during review, and each must be replaced with a real",
+       "answer before the site goes anywhere near a live domain.", "",
        f"**{total} placeholders across {len(pages)} page(s).** The site is not publishable",
        "until these are answered, because several of them are promises the client has",
        "to keep after launch.", "",
@@ -66,13 +75,15 @@ out = ["# Assumptions to confirm", "",
 
 for page, items in rows.items():
     by_section = OrderedDict()
-    for (sec, ask, ctx), n in items.items():
-        by_section.setdefault(sec, []).append((ask, ctx, n))
+    for (sec, ask, ctx, shown), n in items.items():
+        by_section.setdefault(sec, []).append((ask, shown, n))
     out += [f"## {page}", ""]
     for sec, entries in by_section.items():
-        out += [f"### {sec}", "", "| Fact needed | Where it sits | Uses |", "| --- | --- | --- |"]
-        for ask, ctx, n in entries:
-            out.append(f"| {ask} | {ctx} | {n} |")
+        out += [f"### {sec}", "",
+                "| Fact needed from the client | Invented stand-in now on the page | Uses |",
+                "| --- | --- | --- |"]
+        for ask, shown, n in entries:
+            out.append(f"| {ask} | {shown or '(nothing shown)'} | {n} |")
         out.append("")
 
 open("docs/ASSUMPTIONS.md", "w", encoding="utf-8").write("\n".join(out))

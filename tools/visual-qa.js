@@ -81,6 +81,18 @@ const EXE = process.env.CHROMIUM || '/opt/pw-browsers/chromium-1194/chrome-linux
     if (report.canScrollX) fails.push(`${vp.tag}: the page scrolls horizontally`);
     report.wide.forEach(w => fails.push(`${vp.tag}: unclipped element past the viewport: ${w}`));
 
+    // Cheap guard against a whole block vanishing: the hero H1 must be on
+    // screen at load. A positioning regression once pushed it out of view and
+    // every geometry assertion still passed.
+    const heroVisible = await page.evaluate(() => {
+      const h1 = document.querySelector('.hx-hero h1');
+      if (!h1) return 'missing';
+      const r = h1.getBoundingClientRect();
+      return (r.width > 100 && r.top < window.innerHeight && r.bottom > 0) ? 'ok'
+           : `off-screen (top=${Math.round(r.top)} h=${Math.round(r.height)})`;
+    });
+    if (heroVisible !== 'ok') fails.push(`${vp.tag}: hero H1 not visible at load: ${heroVisible}`);
+
     if (vp.tag === 'desktop') {
       await page.click('#tab-silicone');
       if (await page.evaluate(() => document.getElementById('sys-silicone').hidden)) fails.push('tabs do not switch');
