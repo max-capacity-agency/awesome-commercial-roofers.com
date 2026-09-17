@@ -69,9 +69,11 @@ Run them after filling `{{CONFIRM: }}` tokens as well as after rewriting copy.
 
 ## Filling the placeholders
 
-The phone number is `(505) 555-0000` / `tel:+15055550000` everywhere, deliberately an
-obvious placeholder. One find-and-replace across `index.html` fixes every instance,
-including the nav, hero, CTA band, footer, sticky bar and the schema block.
+The phone number `(505) 215-5410` and the email `james@awesome-commercial-roofers.com`
+are the client's real details, in the nav, hero, CTA band, footer, sticky bar and the
+schema block. The contractor licence number is still a zeroed placeholder
+(`NM GB-98 #000000`) on purpose: a plausible-looking licence can collide with a real
+licensee's, so it is the one value not made realistic.
 
 ## Before it goes live
 

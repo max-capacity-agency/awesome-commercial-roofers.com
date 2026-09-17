@@ -15,9 +15,8 @@ system applies the only treatment these need.
 | Hero | `assets/img/hero.webp` | 16/10, min 2000px wide | A Farmington commercial building with a low-slope or metal roof, occupied and in use. Street level or drone. The roof must be the subject, and it should read as a working building, not a render. |
 | Owner | `assets/img/owner-james.webp` | 4/5 portrait, min 900px wide | James on a commercial roof, at eye level, with the crew if possible. This is the trust engine of the whole site. Not a studio headshot, not a logo. Minimum 420px tall in place. |
 | Featured project | `assets/img/featured-project.webp` | 21/9 full-bleed, min 2100px wide | One completed restored roof, street level, on a building someone local would recognise. |
-| Before / after pair 1 | `ba-1-before.webp`, `ba-1-after.webp` | 16/11, min 880px wide | A low-slope roof before and after restoration. **Matched angle and framing**, or the slider does not work. |
-| Before / after pair 2 | `ba-2-before.webp`, `ba-2-after.webp` | 16/11 | A metal roof, rust and weeping seams before, coated panel field after. Matched angle. |
-| Before / after pair 3 | `ba-3-before.webp`, `ba-3-after.webp` | 16/11 | A ponding or failed-seam repair, before and after. Matched angle. |
+| Before / after (in place) | `ba-1-before.webp`, `ba-1-after.webp` | 16/9, min 880px wide | Currently the client's matched aerial pair, same building weathered then coated. Replace with James's own job when one is shot. **Matched angle and framing**, or the slider does not work. |
+| Before / after, more pairs | new files | 16/9 | Each additional pair needs the same roof, the same angle, before and after. The section runs one slider until a second real pair exists; it is not a slot to fill with two different buildings. |
 
 ## Priority two: the page reads as generic without these
 

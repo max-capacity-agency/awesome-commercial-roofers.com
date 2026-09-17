@@ -5,7 +5,7 @@ client. Each one is shown on the page behind a flag so it cannot be mistaken
 for a confirmed fact during review, and each must be replaced with a real
 answer before the site goes anywhere near a live domain.
 
-**88 placeholders across 1 page(s).** The site is not publishable
+**78 placeholders across 1 page(s).** The site is not publishable
 until these are answered, because several of them are promises the client has
 to keep after launch.
 
@@ -18,15 +18,12 @@ Regenerate with `python3 tools/build-assumptions.py`.
 | Fact needed from the client | Invented stand-in now on the page | Uses |
 | --- | --- | --- |
 | the response-time commitment James will actually honour | ⁠A roofer calls you back within 4 business hours | 1 |
-| Google rating | ⁠4.9 | 1 |
-| Google review count | ⁠37 | 1 |
 | deposit and progress billing terms | ⁠10% deposit, balance billed against completed area | 1 |
-| Google rating | ⁠4.9 | 1 |
-| Google review count | ⁠37 | 1 |
+| warranty length in years | ⁠15 | 1 |
 | total square footage restored | ⁠640,000 | 1 |
 | year the company started | ⁠2011 | 1 |
 | number of commercial roofs restored | ⁠84 | 1 |
-| warranty length in years | ⁠15 | 1 |
+| the real NM contractor licence number | ⁠NM GB-98 #000000 | 1 |
 
 ### 3. USP GRID (component 11)
 
@@ -35,8 +32,8 @@ Regenerate with `python3 tools/build-assumptions.py`.
 | the per-square-foot range James will publish | ⁠$3.80–$6.40 | 1 |
 | deposit terms | ⁠10% down | 1 |
 | how payment is actually structured, and whether a finance partner exists | ⁠A 10% deposit holds your place on the schedule, the balance is billed against completed area, and we work with your own lender where a building needs financing. | 1 |
-| Google rating | ⁠4.9 | 1 |
-| Google review count | ⁠37 | 1 |
+| warranty length in years | ⁠15 | 1 |
+| what the warranty covers | ⁠labour and the coating system | 1 |
 | total square footage restored | ⁠640,000 | 1 |
 | year the company started | ⁠2011 | 1 |
 
@@ -87,18 +84,11 @@ Regenerate with `python3 tools/build-assumptions.py`.
 | building type | ⁠Self-storage facility | 1 |
 | city | ⁠Farmington | 1 |
 | system installed | ⁠silicone restoration | 1 |
-| city | ⁠Aztec | 1 |
-| system installed | ⁠metal restoration | 1 |
-| building type | ⁠Church | 1 |
-| city | ⁠Bloomfield | 1 |
-| repair carried out | ⁠seam and flashing repair | 1 |
 
 ### 10. REVIEWS WALL (component 9, on the dark ground)
 
 | Fact needed from the client | Invented stand-in now on the page | Uses |
 | --- | --- | --- |
-| Google rating | ⁠4.9 | 1 |
-| Google review count | ⁠37 | 1 |
 | a real verbatim Google review | ⁠We had three bids to tear the roof off. James was the only one who got up there with a meter first, and the readings said we did not need to. Two years on it is still dry and we spent about half what the others wanted. | 1 |
 | reviewer name | ⁠Marcus Hollis | 1 |
 | building type | ⁠Church | 1 |

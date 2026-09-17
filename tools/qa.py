@@ -69,10 +69,23 @@ for s in secs:
 h1 = re.search(r"<h1>(.*?)</h1>", doc, re.S).group(1)
 for token in ("Farmington", "NM"):
     if token not in h1: fail(f"H1 missing geography token {token!r}: {h1}")
-if not re.search(r"hx-display", doc): fail("hero display line missing")
+# The display line was removed at the agency's direction. Copy law 1 allows a
+# slogan there precisely because the H1 does the literal work; without it the H1
+# still carries outcome, service and geography, so this is a valid shape. Kept as
+# a warning so its absence stays a recorded decision, not a silent regression.
+if not re.search(r"hx-display", doc):
+    warn("no hero display line (removed on request; H1 still carries the literal work)")
 if not re.search(r"hx-promise", doc): fail("hero promise line missing")
 meta = re.search(r'<p class="hx-meta">(.*?)</p>', doc, re.S).group(1)
-if meta.count("<span>") + meta.count('<span><b') < 3: fail("hero meta strip needs three facts")
+facts = meta.count("<span>") + meta.count('<span><b')
+# CRO rule 3 wants service area, response time, and rating with review count.
+# The third cannot ship until the client actually has reviews, and an invented
+# one was removed on request, so two is the honest maximum for now.
+if facts < 2:
+    fail(f"hero meta strip carries {facts} facts, needs at least service area and response time")
+elif facts < 3:
+    warn("hero meta strip carries 2 of 3 facts; the rating and review count are absent "
+         "until the client has reviews")
 if "hx-price" not in doc: fail("hero price anchor element missing")
 if len(re.findall(r'<li><svg class="hx-check"', doc)) != 4:
     fail("hero USP checklist must carry exactly 4 items")

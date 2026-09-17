@@ -1,7 +1,7 @@
 # Asset manifest
 
 The Drive folder is now link-shared, so the client's own imagery is in place.
-17 slots come from Drive, 2 are still openly licensed stock, and 6 remain
+17 slots come from Drive, 2 are still openly licensed stock, and 2 remain
 designed placeholders. See [SHOT-LIST.md](SHOT-LIST.md) for what each one needs.
 
 ## From the client's Drive folder
@@ -49,17 +49,16 @@ they remain, and both should be replaced before launch.
 
 ## Still designed placeholders
 
-- `ba-2-after`
-- `ba-2-before`
-- `ba-3-after`
-- `ba-3-before`
-- `step-3`
-- `step-5`
+- `step-3` (the written scope on site)
+- `step-5` (the warranty handover)
 
-The two remaining before/after pairs have no matched source. A slider needs the same roof
-twice from the same angle, and using two different buildings reads as exactly that the
-moment anyone drags the handle. Process steps 3 and 5 (the written scope on site, and the
-warranty handover) have no Drive equivalent either.
+Neither has a Drive equivalent.
+
+The before/after section now runs **one** full-width slider on the single matched pair
+rather than three. The other two had no matched source, and a row of one real pair beside
+two blanks argued less than the real pair does on its own. The `ba-2` and `ba-3` files are
+deleted rather than left orphaned. Add sliders back as James supplies matched pairs: the
+requirement is the same roof, the same angle, before and after.
 
 ## A note on the Drive library
 
