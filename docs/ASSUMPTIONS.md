@@ -5,7 +5,7 @@ client. Each one is shown on the page behind a flag so it cannot be mistaken
 for a confirmed fact during review, and each must be replaced with a real
 answer before the site goes anywhere near a live domain.
 
-**78 placeholders across 1 page(s).** The site is not publishable
+**74 placeholders across 1 page(s).** The site is not publishable
 until these are answered, because several of them are promises the client has
 to keep after launch.
 
@@ -23,7 +23,6 @@ Regenerate with `python3 tools/build-assumptions.py`.
 | total square footage restored | ⁠640,000 | 1 |
 | year the company started | ⁠2011 | 1 |
 | number of commercial roofs restored | ⁠84 | 1 |
-| the real NM contractor licence number | ⁠NM GB-98 #000000 | 1 |
 
 ### 3. USP GRID (component 11)
 
@@ -115,7 +114,6 @@ Regenerate with `python3 tools/build-assumptions.py`.
 | warranty length in years | ⁠15 | 1 |
 | what the warranty covers | ⁠labour and the coating system | 1 |
 | payment terms and progress billing | ⁠10% deposit, balance billed against completed area | 1 |
-| the real NM contractor licence number | ⁠NM GB-98 #000000 | 1 |
 
 ### 15. FAQ (component 5)
 
@@ -126,7 +124,6 @@ Regenerate with `python3 tools/build-assumptions.py`.
 | the exact town list and travel radius | ⁠We travel up to 90 miles from Farmington | 1 |
 | warranty length in years | ⁠15 | 1 |
 | what the warranty covers | ⁠labour and the coating system | 1 |
-| the real NM contractor licence number | ⁠NM GB-98 #000000 | 1 |
 | lead time from signed scope to start | ⁠2 to 4 weeks | 1 |
 | a representative roof size | ⁠20,000 | 1 |
 | working days on the roof | ⁠4 to 7 | 1 |
@@ -149,4 +146,3 @@ Regenerate with `python3 tools/build-assumptions.py`.
 | street address | ⁠4812 Bloomfield Highway | 1 |
 | ZIP code | ⁠87401 | 1 |
 | business hours | ⁠Mon to Fri, 7am to 5pm | 1 |
-| the real NM contractor licence number | ⁠NM GB-98 #000000 | 1 |

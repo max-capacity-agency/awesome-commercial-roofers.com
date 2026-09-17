@@ -524,12 +524,14 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
   letter-spacing:.01em}
 .hx-cmp-h--us{background:var(--dark);color:var(--light);border-right:1px solid var(--line)}
 .hx-cmp-h--them{background:var(--light-raised);color:var(--muted)}
-.hx-cmp-c{display:flex;gap:12px;padding:17px 24px;border-top:1px solid var(--line);font-size:15px}
+.hx-cmp-c{padding:17px 24px 17px 48px;text-indent:-24px;
+  border-top:1px solid var(--line);font-size:15px}
+.hx-cmp-c > i{display:inline-block;width:24px;font-style:normal;text-indent:0}
 .hx-cmp-c--us{border-right:1px solid var(--line);color:var(--dark);font-weight:600;
   background:var(--light)}
-.hx-cmp-c--us i{color:var(--accent-deep);font-style:normal;flex:none}
+.hx-cmp-c--us > i{color:var(--accent-deep)}
 .hx-cmp-c--them{color:var(--muted);font-weight:400;background:var(--light-raised)}
-.hx-cmp-c--them i{color:var(--line-row);font-style:normal;flex:none}
+.hx-cmp-c--them > i{color:var(--line-row)}
 @media (max-width:700px){
   .hx-cmp{grid-template-columns:1fr}
   .hx-cmp-c--us{border-right:0}

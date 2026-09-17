@@ -10,7 +10,7 @@ Built on the `roofing-website-v3` design system. Deviations from it are listed i
 
 The homepage is complete and validated, but **126 facts are still missing** and every
 one of them is wrapped in a `{{CONFIRM: }}` token in the markup. Several are promises
-the client has to keep after launch (response time, warranty terms, licence number),
+the client has to keep after launch (response time, warranty terms, insurance certificates),
 so publishing before they are answered would put wrong information on a live site.
 
 See [docs/ASSUMPTIONS.md](docs/ASSUMPTIONS.md) for the full list with sentence context,
@@ -71,9 +71,13 @@ Run them after filling `{{CONFIRM: }}` tokens as well as after rewriting copy.
 
 The phone number `(505) 215-5410` and the email `james@awesome-commercial-roofers.com`
 are the client's real details, in the nav, hero, CTA band, footer, sticky bar and the
-schema block. The contractor licence number is still a zeroed placeholder
-(`NM GB-98 #000000`) on purpose: a plausible-looking licence can collide with a real
-licensee's, so it is the one value not made realistic.
+schema block.
+
+The contractor licence **number** is deliberately absent from the site. The site claims
+licensed and insured status, which is true, but never prints a number: a plausible-looking
+licence can collide with a real licensee's. Add James's actual number in the hero proof
+card, the comparison table, FAQ 4 and the footer NAP when he supplies it, and repeat it
+character for character in all four.
 
 ## Before it goes live
 
