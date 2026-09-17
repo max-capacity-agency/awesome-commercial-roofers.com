@@ -308,8 +308,9 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 .hx-trust{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 30px;
   margin:0;padding:22px 0 0;border-top:1px solid var(--on-dark-line);font-size:14.5px;
   color:var(--on-dark-1);max-width:760px}
-.hx-trust li{display:flex;align-items:flex-start;gap:9px}
-.hx-check{width:17px;height:17px;color:var(--confirm);flex:none;margin-top:3px}
+.hx-trust li{padding-left:26px;text-indent:-26px}
+.hx-check{display:inline-block;width:17px;height:17px;margin-right:9px;
+  color:var(--confirm);text-indent:0;vertical-align:-3px}
 .hx-hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin:26px 0 0}
 .hx-proof{position:absolute;right:40px;bottom:104px;z-index:2;display:grid;gap:14px;width:252px}
 .hx-proof .hx-panel-t{padding:20px 22px;position:relative}

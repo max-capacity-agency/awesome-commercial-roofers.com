@@ -5,7 +5,7 @@ client. Each one is shown on the page behind a flag so it cannot be mistaken
 for a confirmed fact during review, and each must be replaced with a real
 answer before the site goes anywhere near a live domain.
 
-**74 placeholders across 1 page(s).** The site is not publishable
+**75 placeholders across 1 page(s).** The site is not publishable
 until these are answered, because several of them are promises the client has
 to keep after launch.
 
@@ -18,6 +18,7 @@ Regenerate with `python3 tools/build-assumptions.py`.
 | Fact needed from the client | Invented stand-in now on the page | Uses |
 | --- | --- | --- |
 | the response-time commitment James will actually honour | ⁠A roofer calls you back within 4 business hours | 1 |
+| substantiation for the most-trusted claim, or a narrower claim James can prove | ⁠Most trusted | 1 |
 | deposit and progress billing terms | ⁠10% deposit, balance billed against completed area | 1 |
 | warranty length in years | ⁠15 | 1 |
 | total square footage restored | ⁠640,000 | 1 |

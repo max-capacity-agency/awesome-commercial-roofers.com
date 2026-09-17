@@ -67,14 +67,23 @@ for s in secs:
 
 # ---------- copy laws ----------
 h1 = re.search(r"<h1>(.*?)</h1>", doc, re.S).group(1)
-for token in ("Farmington", "NM"):
-    if token not in h1: fail(f"H1 missing geography token {token!r}: {h1}")
+# Geography and the service are both mandatory in the H1. The agency moved the
+# geography from Farmington to the state, so either shape passes. Dropping
+# "restoration" is allowed but recorded, because it is the differentiator and
+# the only other places it survives in the hero are the eyebrow and the promise.
+if not any(t in h1 for t in ("Farmington", "New Mexico", "NM")):
+    fail(f"H1 names no geography: {h1}")
+if "roof" not in h1.lower():
+    fail(f"H1 names no service: {h1}")
+if "restoration" not in h1.lower():
+    warn("H1 no longer says restoration (agency direction); the positioning now "
+         "rests on the eyebrow and the promise line alone")
 # The display line was removed at the agency's direction. Copy law 1 allows a
 # slogan there precisely because the H1 does the literal work; without it the H1
 # still carries outcome, service and geography, so this is a valid shape. Kept as
 # a warning so its absence stays a recorded decision, not a silent regression.
 if not re.search(r"hx-display", doc):
-    warn("no hero display line (removed on request; H1 still carries the literal work)")
+    warn("no hero display line (removed on request; the H1 sits in that slot instead)")
 if not re.search(r"hx-promise", doc): fail("hero promise line missing")
 meta = re.search(r'<p class="hx-meta">(.*?)</p>', doc, re.S).group(1)
 facts = meta.count("<span>") + meta.count('<span><b')
