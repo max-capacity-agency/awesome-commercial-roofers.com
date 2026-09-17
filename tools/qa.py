@@ -16,7 +16,7 @@ body = css.replace(root, "")
 # #000/#fff inside mask-image are alpha masks; --gradient-shine is the documented
 # @property exception (initial-value takes no var()).
 stray = [h for h in re.findall(r"#[0-9a-fA-F]{3,8}\b", body)
-         if h.lower() not in ("#000", "#fff", "#c8922c")]
+         if h.lower() not in ("#000", "#fff", "#ffb400")]
 # #000/#fff inside mask-image are alpha masks, not surface colour
 if stray: fail(f"raw hex outside the token block: {sorted(set(stray))}")
 

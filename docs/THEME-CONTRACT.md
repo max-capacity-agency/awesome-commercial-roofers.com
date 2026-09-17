@@ -1,8 +1,13 @@
 # Theme contract: Awesome Commercial Roofers
 
 The design system ships no colours of its own. It carries five brand inputs and derives
-everything else. The client supplied "forest green (dark green) and gold" and no logo, so
-the two hexes below are a **proposal**, not a decision, and they are recorded as such.
+everything else. The palette is taken from the live site at awesome-commercial-roofers.com,
+which runs `#ffb400` yellow (91 uses in its stylesheet), `#0d0d0d` near-black, white and
+`#737373` grey.
+
+**This overrides the intake form**, which asked for "forest green (dark green) n Gold".
+Matching the existing site keeps brand continuity; the green build is in git history if
+anyone wants to compare.
 
 Every ratio here was measured, not eyeballed.
 
@@ -10,10 +15,10 @@ Every ratio here was measured, not eyeballed.
 
 | Token | Value | What it is |
 | --- | --- | --- |
-| `--dark` | `#13351F` | Forest green. Dark sections, nav, footer, primary button fill. |
-| `--light` | `#EEF2EA` | Page ground, tinted with the brand hue. Never `#ffffff`. |
-| `--accent` | `#C8922C` | Gold. Eyebrows, `<em>`, figures, active states, fills. |
-| `--ink` | `#141A16` | Headings and body on light grounds. |
+| `--dark` | `#12100A` | The site's `#0d0d0d`, tinted a few degrees toward the brand amber. The system requires a tinted dark, not a neutral one. |
+| `--light` | `#FAF7F0` | Reads as white, carries the brand hue. Never `#ffffff`, per the contract. |
+| `--accent` | `#FFB400` | The brand yellow, taken from the live site unchanged. |
+| `--ink` | `#14110B` | Headings and body on light grounds. |
 | `--font-display` | Anton | Heavy, condensed, uppercase only above 0.9rem. |
 | `--font-body` | Archivo | Clean grotesque, 400 to 800. |
 
@@ -23,34 +28,39 @@ Two families, no third. Not Inter, Roboto or Arial. No serif pairing.
 
 | Token | Value | Derivation |
 | --- | --- | --- |
-| `--dark-deep` | `#0C2415` | `--dark` darkened ~15% lightness |
-| `--dark-base` | `#081A0F` | hero base and overlay floor |
-| `--accent-deep` | `#8B631F` | `--accent` stepped down until it clears 4.5:1 on `--light` |
-| `--light-raised` | `#F7FAF5` | `--light` lightened a few points |
-| `--accent-ink` | `#0C2415` | text on accent fills, see the deviation below |
-| `--muted` | `#5B6660` | the only grey in the system |
-| `--confirm` | `#8FBF7A` | checkmarks on dark grounds |
-| `--confirm-deep` | `#5E8C48` | checkmarks on light grounds |
+| `--dark-deep` | `#0A0906` | `--dark` darkened |
+| `--dark-base` | `#050403` | hero base and overlay floor |
+| `--accent-deep` | `#8A6100` | `--accent` stepped down until it clears 4.5:1 on `--light` |
+| `--light-raised` | `#FFFDF8` | `--light` lightened a few points |
+| `--accent-ink` | `#12100A` | text on accent fills, see the deviation below |
+| `--muted` | `#6B6459` | the only grey in the system |
+| `--confirm` | `var(--accent)` | checkmarks on dark grounds |
+| `--confirm-deep` | `var(--accent-deep)` | checkmarks on light grounds |
 
-`--on-dark-*` alphas use the `--light` triplet `238,242,234`.
-`--line*` alphas use the `--dark` triplet `19,53,31`.
+`--on-dark-*` alphas use the `--light` triplet `250,247,240`.
+`--line*` alphas use the `--dark` triplet `18,16,10`.
+
+**The site's own dark-yellow step does not pass.** It ships `#E6A200`, `#CC9000` and
+`#996C00`. Measured on this light ground those are 2.06:1, 2.60:1 and 4.36:1. The last is
+the closest and still misses 4.5:1, so `--accent-deep` steps one further to `#8A6100`
+(5.18:1). Anywhere the current site sets yellow text on white, it is failing WCAG AA.
 Every shadow is tinted with `--dark` or `--dark-base`. None is neutral black.
 
 ## Measured contrast
 
 | Pair | Ratio | Needs | Result |
 | --- | --- | --- | --- |
-| `--dark` on `--light` | 11.90:1 | 4.5:1 | pass |
-| `--ink` on `--light` | 15.58:1 | 4.5:1 | pass |
-| `--ink` on `--light-raised` | 16.78:1 | 4.5:1 | pass |
-| `--accent-deep` on `--light` | 4.75:1 | 4.5:1 | pass |
-| `--accent-deep` on `--light-raised` | 5.11:1 | 4.5:1 | pass |
-| `--accent` as text on `--light` | 2.44:1 | fails by design | correct, fill only |
-| `--accent` as `<em>` on `--dark` | 4.88:1 | 4.5:1 | pass |
-| `--accent-ink` on `--accent` | 5.95:1 | 4.5:1 | pass |
-| `--muted` on `--light` | 5.27:1 | 4.5:1 | pass |
-| `--light` at .92 alpha on `--dark` | 10.31:1 | 4.5:1 | pass |
-| `--light` at .78 alpha on `--dark` | 7.83:1 | 4.5:1 | pass |
+| `--dark` on `--light` | 17.77:1 | 4.5:1 | pass |
+| `--ink` on `--light` | 17.61:1 | 4.5:1 | pass |
+| `--ink` on `--light-raised` | 18.53:1 | 4.5:1 | pass |
+| `--accent-deep` on `--light` | 5.18:1 | 4.5:1 | pass |
+| `--accent-deep` on `--light-raised` | 5.45:1 | 4.5:1 | pass |
+| `--accent` as text on `--light` | 1.67:1 | fails by design | correct, fill only |
+| `--accent` as `<em>` on `--dark` | 10.67:1 | 4.5:1 | pass |
+| `--accent-ink` on `--accent` | 10.67:1 | 4.5:1 | pass |
+| `--muted` on `--light` | 5.46:1 | 4.5:1 | pass |
+| `--light` at .92 alpha on `--dark` | 15.09:1 | 4.5:1 | pass |
+| `--light` at .78 alpha on `--dark` | 10.92:1 | 4.5:1 | pass |
 
 ## Contract checklist
 
@@ -69,10 +79,9 @@ Every shadow is tinted with `--dark` or `--dark-base`. None is neutral black.
 
 ## Three deviations from the reference sheet, each deliberate
 
-**1. `--accent-ink` is `#0C2415`, not `#ffffff`.** The reference block sets white text on the
-accent fill. On this gold that measures 2.76:1 and fails badly. Dark green on gold measures
-5.95:1. White on gold is unreadable in any brand, so this looks like a bug in the reference
-rather than a rule.
+**1. `--accent-ink` is `#12100A`, not `#ffffff`.** The reference block sets white text on the
+accent fill. On this yellow that measures 1.78:1, which is close to invisible. Near-black on
+the yellow measures 10.67:1.
 
 **2. The FAQ accordion animates `grid-template-rows`, not `max-height`.** `components.md`
 shows `max-height:340px`; `design-system.md` says "Never `max-height`" in the motion
@@ -81,6 +90,11 @@ the fourteen answers on this page anyway.
 
 **3. Base body type is 1.0625rem, not 1rem.** The client asked for "med to large so people
 can read with no problems". The scale, line height and measure are otherwise untouched.
+
+**4. Checkmarks use the brand yellow, not the system's `#8FBF7A` green.** On a forest-green
+brand that green was harmonious. On white/yellow/black it reads as a stray third hue, so
+`--confirm` maps to `--accent` on dark grounds and `--accent-deep` on light. Both clear
+contrast with room to spare.
 
 ## Three gaps the reference sheet has, filled here
 
