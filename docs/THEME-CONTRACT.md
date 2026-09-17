@@ -44,6 +44,7 @@ Two families, no third. Not Inter, Roboto or Arial. No serif pairing.
 `#996C00`. Measured on this light ground those are 2.06:1, 2.60:1 and 4.36:1. The last is
 the closest and still misses 4.5:1, so `--accent-deep` steps one further to `#8A6100`
 (5.18:1). Anywhere the current site sets yellow text on white, it is failing WCAG AA.
+
 Every shadow is tinted with `--dark` or `--dark-base`. None is neutral black.
 
 ## Measured contrast
@@ -77,7 +78,7 @@ Every shadow is tinted with `--dark` or `--dark-base`. None is neutral black.
 
 `tools/qa.py` enforces the last five on every run.
 
-## Three deviations from the reference sheet, each deliberate
+## Four deviations from the reference sheet, each deliberate
 
 **1. `--accent-ink` is `#12100A`, not `#ffffff`.** The reference block sets white text on the
 accent fill. On this yellow that measures 1.78:1, which is close to invisible. Near-black on
