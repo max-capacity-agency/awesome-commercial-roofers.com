@@ -12,7 +12,7 @@ system applies the only treatment these need.
 
 | Slot | File | Ratio | What it must show |
 | --- | --- | --- | --- |
-| Hero | `assets/img/hero.webp` | 16/10, min 2000px wide | A Farmington commercial building with a low-slope or metal roof, occupied and in use. Street level or drone. The roof must be the subject, and it should read as a working building, not a render. |
+| Hero | `assets/img/hero.webp` | 16/10, min 2000px wide | A New Mexico commercial building with a low-slope or metal roof, occupied and in use. Street level or drone. The roof must be the subject, and it should read as a working building, not a render. |
 | Owner | `assets/img/owner-james.webp` | 4/5 portrait, min 900px wide | James on a commercial roof, at eye level, with the crew if possible. This is the trust engine of the whole site. Not a studio headshot, not a logo. Minimum 420px tall in place. |
 | Featured project | `assets/img/featured-project.webp` | 21/9 full-bleed, min 2100px wide | One completed restored roof, street level, on a building someone local would recognise. |
 | Before / after (in place) | `ba-1-before.webp`, `ba-1-after.webp` | 16/9, min 880px wide | Currently the client's matched aerial pair, same building weathered then coated. Replace with James's own job when one is shot. **Matched angle and framing**, or the slider does not work. |
@@ -31,7 +31,7 @@ system applies the only treatment these need.
 | System: foam | `system-foam.webp` | 4/3 | SPF being sprayed to build fall toward a drain, before the coat. |
 | System: metal | `system-metal.webp` | 4/3 | Rust treatment and fastener replacement on a panel roof. |
 | Process 1 to 5 | `step-1.webp` … `step-5.webp` | 1/1 square | One per step, in order: arriving on site with survey gear, running the moisture scan, the written scope on the truck hood with the owner, crew detailing seams and penetrations, the finished roof with the warranty paperwork. |
-| Parallax | `parallax-fourcorners.webp` | 16/9, min 1800px wide | A wide Four Corners landscape with commercial buildings in it. Recognisable to someone who lives there. |
+| Parallax | `parallax-fourcorners.webp` | 16/9, min 1800px wide | A wide New Mexico landscape with commercial buildings in it. Recognisable to someone who lives there. |
 | FAQ | `faq.webp` | 4/3 | James or a crew member on a roof, mid-conversation, unposed. |
 | Open Graph | `og-home.webp` | 1200x630 exactly | A hero crop. Do not bake text into it. |
 

@@ -100,6 +100,25 @@ const EXE = process.env.CHROMIUM || '/opt/pw-browsers/chromium-1194/chrome-linux
       await page.waitForTimeout(650);
       if (!await page.evaluate(() => document.querySelector('.hx-faq-a').getBoundingClientRect().height > 30))
         fails.push('FAQ accordion does not open');
+      // the decision cards hide the argument behind a flip, so the tap toggle
+      // has to work without hover and both faces have to fit the card
+      await page.click('.hx-flip-hint');
+      await page.waitForTimeout(1100);
+      const flip = await page.evaluate(() => {
+        const card = document.querySelector('[data-flip]');
+        const inner = card.querySelector('.hx-flip-in');
+        const t = getComputedStyle(inner).transform;
+        const m = new DOMMatrixReadOnly(t === 'none' ? undefined : t);
+        const over = [...document.querySelectorAll('.hx-flip-face')]
+          .filter(f => f.scrollHeight > f.clientHeight + 1).length;
+        return { flipped: card.classList.contains('is-flipped'), m11: Math.round(m.m11),
+                 expanded: card.querySelector('.hx-flip-back [data-flip-toggle]')
+                   .getAttribute('aria-expanded'), over: over };
+      });
+      if (!flip.flipped || flip.m11 !== -1) fails.push(`decision card does not flip on tap (${JSON.stringify(flip)})`);
+      if (flip.expanded !== 'true') fails.push('decision card does not report aria-expanded after flipping');
+      if (flip.over) fails.push(`${flip.over} flip face(s) overflow the card`);
+
       await page.focus('[data-ba]');
       await page.keyboard.press('ArrowRight');
       if (await page.getAttribute('[data-ba]', 'aria-valuenow') === '50') fails.push('before/after ignores the keyboard');

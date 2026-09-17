@@ -101,9 +101,13 @@ can read with no problems". The scale, line height and measure are otherwise unt
 ## The flag convention
 
 Values the client has not confirmed are shown on the page as invented stand-ins wrapped in
-`<span class="flag" data-flag="what we still need">`, rendered with a flag emoji and a soft
-accent wash. They exist so the page reads as a finished thing during review without any
-invented number passing as a fact.
+`<span class="flag" data-flag="what we still need">`, marked with a flag emoji and nothing
+else. They exist so the page reads as a finished thing during review without any invented
+number passing as a fact.
+
+The span carried a dotted accent underline as well until the agency asked for the emoji on
+its own. The underline is gone rather than restyled, so the marker is now a single signal
+instead of two, and the copy underneath reads at normal weight.
 
 The design system bans emoji outright. This is a deliberate, temporary override for the
 review build: every flag comes out as its fact is confirmed, and `tools/qa.py --launch`

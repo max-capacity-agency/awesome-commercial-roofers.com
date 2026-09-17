@@ -78,6 +78,28 @@
     });
   }
 
+  /* ---------- decision tiers: flip cards ----------
+     Pointer devices flip on hover in CSS. Everything else, touch and keyboard
+     included, goes through the toggle button so the back of the card is never
+     reachable only by hovering. */
+  var flipCards = document.querySelectorAll('[data-flip]');
+  Array.prototype.forEach.call(flipCards, function (card) {
+    var toggles = card.querySelectorAll('[data-flip-toggle]');
+    card.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      var on = !card.classList.contains('is-flipped');
+      card.classList.toggle('is-flipped', on);
+      Array.prototype.forEach.call(toggles, function (b) {
+        b.setAttribute('aria-expanded', on ? 'true' : 'false');
+      });
+      /* activated by its own button: carry focus to the face now showing */
+      if (e.target.closest('[data-flip-toggle]')) {
+        var next = card.querySelector((on ? '.hx-flip-back' : '.hx-flip-front') + ' [data-flip-toggle]');
+        if (next) next.focus();
+      }
+    });
+  });
+
   /* ---------- sticky call bar: after the hero leaves, never on load ---------- */
   var hero = document.querySelector('.hx-hero');
   var bar = document.querySelector('[data-sticky]');

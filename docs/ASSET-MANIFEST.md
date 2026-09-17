@@ -44,7 +44,7 @@ first slider on the page.
 | `system-foam` | Raised ceiling, spray foam insulation | Brock Builders | CC BY 2.0 |
 | `parallax-fourcorners` | Dripping Springs, Organ Mountains-Desert Peaks, New Mexico | mypubliclands | CC BY 2.0 |
 
-Nothing in Drive covers spray foam or a Four Corners landscape. Both need attribution while
+Nothing in Drive covers spray foam or a New Mexico landscape. Both need attribution while
 they remain, and both should be replaced before launch.
 
 ## Still designed placeholders

@@ -67,6 +67,19 @@ python3 tools/build-assumptions.py    # rewrites docs/ASSUMPTIONS.md from the to
 Both derive from the markup, so neither can drift from what the page actually says.
 Run them after filling `{{CONFIRM: }}` tokens as well as after rewriting copy.
 
+## Geography
+
+Every location line in the copy says **New Mexico**, at the agency's direction: the hero
+meta strip, the proof cards, the hero checklist, the USP grid, the parallax break, the
+footer blurb, the wordmark tagline, the `<title>`, the meta description, `og:title` and the
+schema description. Three kinds of place name are deliberately still specific, because
+turning them into "New Mexico" would make them wrong or useless:
+
+- The service-area chips in the Meet James section, which the agency asked to keep
+- The postal address in the footer and `PostalAddress`, and the `areaServed` city list
+- Named projects, reviewer bylines, and the permit answer in the FAQ, which names Farmington
+  and San Juan County because those are the authorities that actually issue the permit
+
 ## Filling the placeholders
 
 The phone number `(505) 215-5410` and the email `james@awesome-commercial-roofers.com`
