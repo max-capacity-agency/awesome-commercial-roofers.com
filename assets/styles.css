@@ -169,7 +169,7 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
   padding:16px 34px;border:1px solid transparent;border-radius:360px;
   font:700 15px/1.2 var(--font-body);letter-spacing:.01em;color:var(--shiny-fg);
-  outline-offset:4px;text-decoration:none;
+  outline-offset:4px;text-decoration:none;text-shadow:none;
   background:
     linear-gradient(var(--shiny-bg),var(--shiny-bg)) padding-box,
     conic-gradient(from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
@@ -186,24 +186,14 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 }
 .shiny-cta:hover{--gradient-percent:20%;--gradient-angle-offset:95deg;
   --gradient-shine:var(--shiny-highlight-subtle);color:var(--accent-ink)}
-.shiny-cta::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;
-  background:radial-gradient(circle at bottom,var(--shiny-bg-subtle) 40%,transparent 70%);
-  opacity:.55;mask-image:radial-gradient(circle at bottom,transparent 40%,#000 90%)}
-.shiny-cta::after{content:"";position:absolute;z-index:-1;inset:0;border-radius:inherit;
-  background:linear-gradient(-50deg,transparent,var(--shiny-highlight),transparent);
-  mask-image:radial-gradient(circle at bottom,transparent 40%,#000 90%);
-  opacity:.3;animation:hxShimmer var(--dur) linear infinite}
-.shiny-cta:hover::before{opacity:.85;animation:hxBreathe 2.4s ease-in-out infinite}
 .shiny-cta:active{transform:translateY(1px)}
 @keyframes hxGradientAngle{to{--gradient-angle:360deg}}
-@keyframes hxShimmer{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
-@keyframes hxBreathe{0%,100%{opacity:.6}50%{opacity:.95}}
 
 .accent-cta{
   position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;
   gap:10px;padding:16px 34px;border:0;border-radius:var(--r-pill);cursor:pointer;text-decoration:none;
   background:var(--accent);color:var(--accent-ink);
-  font:700 15px/1.2 var(--font-body);letter-spacing:.01em;
+  font:700 15px/1.2 var(--font-body);letter-spacing:.01em;text-shadow:none;
   transition:transform .25s cubic-bezier(.22,.61,.36,1),box-shadow .25s ease;
 }
 /* Documented white-alpha exception 2 of 2: the CTA glare sweep */
@@ -676,8 +666,7 @@ html[data-motion="off"] [data-ken]{transform:none!important}
 html[data-motion="reduced"] [data-ken],
 html[data-motion="reduced"] [data-glare],
 html[data-motion="reduced"] .accent-cta::after,
-html[data-motion="reduced"] .shiny-cta,
-html[data-motion="reduced"] .shiny-cta::after{animation:none!important}
+html[data-motion="reduced"] .shiny-cta{animation:none!important}
 
 /* ---------- invented content marker -------------------------------------
    Every value the client has not confirmed is shown with a flag, so nothing

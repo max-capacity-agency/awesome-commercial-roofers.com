@@ -115,6 +115,19 @@ five driven by script check the media query and return before doing anything.
 | Magnetic tilt | hero panels, service and review cards | script, pointer position, `hover:hover and pointer:fine` only |
 | Parallax | featured band backdrop | script sets `translate`, which composes with the Ken Burns `transform` |
 | Staggered rows | comparison table | `[data-anim="fade"]` with 70ms steps, our column 35ms ahead of theirs |
+| Sheen on the rim | primary button | animated conic gradient on the border box |
+
+**Buttons set `text-shadow:none`.** The hero applies a two-layer text shadow to
+everything inside it so copy stays legible over the photograph. A button carries
+its own solid ground, so it needs none, and inheriting it put a dark blur behind
+the label. The ghost button is the exception and keeps the shadow, because its
+ground really is the photograph.
+
+**The primary button lost its radial vignette and rotating sheen overlay.** Both
+were depth cues tuned for the forest-green ground. On gold the vignette read as a
+smear across the lower half and the overlay as a light band at the top edge. The
+travelling highlight on the border box is what makes this the shiny button, and
+that is all that remains.
 
 Two of these need a note.
 
