@@ -31,6 +31,15 @@ const EXE = process.env.CHROMIUM || '/opt/pw-browsers/chromium-1194/chrome-linux
       fails.push(`${vp.tag}: request failed: ${u}`);
     });
     await page.goto(URL, { waitUntil: 'domcontentloaded' });
+    // Two things the geometry assertions below need, neither of which the real
+    // page should change. Smooth scrolling makes every scrollTo read back a
+    // stale position, which silently turned the horizontal-overflow check into
+    // a no-op. And the reveal animations translate elements sideways while they
+    // run, so a check that lands mid-flight sees an overflow that does not
+    // exist a moment later. We are asserting the settled layout, so settle it.
+    await page.addStyleTag({ content:
+      'html{scroll-behavior:auto!important}' +
+      '[data-anim]{opacity:1!important;animation:none!important;transform:none!important}' });
     await page.evaluate(() => document.querySelectorAll('[data-anim]').forEach(e => e.classList.add('is-in')));
     await page.waitForTimeout(600);
 
@@ -122,6 +131,42 @@ const EXE = process.env.CHROMIUM || '/opt/pw-browsers/chromium-1194/chrome-linux
       await page.focus('[data-ba]');
       await page.keyboard.press('ArrowRight');
       if (await page.getAttribute('[data-ba]', 'aria-valuenow') === '50') fails.push('before/after ignores the keyboard');
+      // the stat figures must land on their real value, and must not eat the
+      // flag marker sitting in the same span
+      await page.evaluate(() => document.querySelector('.hx-usp-grid').scrollIntoView({ block: 'center' }));
+      await page.waitForTimeout(2200);
+      const counted = await page.evaluate(() => [...document.querySelectorAll('[data-count]')].map(el => ({
+        shown: el.textContent,
+        want: Number(el.getAttribute('data-count')).toLocaleString('en-US'),
+        flag: !!el.parentElement.querySelector('i') })));
+      counted.forEach(c => {
+        if (c.shown !== c.want) fails.push(`counter settled on ${c.shown}, not ${c.want}`);
+        if (!c.flag) fails.push(`counter at ${c.want} lost its flag marker`);
+      });
+
+      // the featured band's backdrop has to move with scroll, and its parallax
+      // must not replace the Ken Burns transform on the same element
+      const par = [];
+      const bandTop = await page.evaluate(() =>
+        Math.round(document.querySelector('.hx-feature').getBoundingClientRect().top + scrollY));
+      for (const d of [-600, -200, 200]) {
+        await page.evaluate(y => window.scrollTo(0, y), bandTop + d);
+        await page.waitForTimeout(240);
+        par.push(await page.evaluate(() => ({
+          t: document.querySelector('[data-parallax]').style.translate,
+          tf: getComputedStyle(document.querySelector('[data-parallax]')).transform })));
+      }
+      if (new Set(par.map(x => x.t)).size < 3) fails.push(`parallax layer does not move: ${par.map(x => x.t).join(' / ')}`);
+      if (par.some(x => x.tf === 'none')) fails.push('parallax replaced the Ken Burns transform instead of composing with it');
+
+      // the rail has to read as progress: every step before the active one filled
+      await page.evaluate(() => { document.querySelector('[data-proc-next]').click();
+        document.querySelector('[data-proc-next]').click(); });
+      await page.waitForTimeout(120);
+      const rail = await page.evaluate(() => [...document.querySelectorAll('.hx-proc-row')]
+        .map(r => r.classList.contains('is-done') ? 'd' : r.classList.contains('is-active') ? 'a' : '-').join(''));
+      if (!/^d*a-*$/.test(rail)) fails.push(`process rail is not cumulative: ${rail}`);
+
       await page.evaluate(() => window.scrollTo(0, 3000));
       await page.waitForTimeout(300);
       if (await page.evaluate(() => getComputedStyle(document.querySelector('[data-sticky]')).display) === 'none')

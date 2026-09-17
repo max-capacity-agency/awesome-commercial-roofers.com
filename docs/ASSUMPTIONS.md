@@ -23,7 +23,7 @@ Regenerate with `python3 tools/build-assumptions.py`.
 | warranty length in years | ⁠15 | 1 |
 | total square footage restored | ⁠640,000 | 1 |
 | year the company started | ⁠2011 | 1 |
-| number of commercial roofs restored | ⁠84 | 1 |
+| number of commercial roofs restored | ⁠ 84 | 1 |
 
 ### 3. USP GRID (component 11)
 
@@ -34,7 +34,7 @@ Regenerate with `python3 tools/build-assumptions.py`.
 | how payment is actually structured, and whether a finance partner exists | ⁠A 10% deposit holds your place on the schedule, the balance is billed against completed area, and we work with your own lender where a building needs financing. | 1 |
 | warranty length in years | ⁠15 | 1 |
 | what the warranty covers | ⁠labour and the coating system | 1 |
-| total square footage restored | ⁠640,000 | 1 |
+| total square footage restored | ⁠ 640,000 | 1 |
 | year the company started | ⁠2011 | 1 |
 
 ### 4. OWNER WELCOME (component 8)

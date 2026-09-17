@@ -55,6 +55,7 @@
 
   --pad-y:clamp(48px,8vw,96px);
   --pad-x:clamp(20px,5vw,64px);
+  --nav-h:69px;
 
   --r-small:12px;
   --r-card:14px;
@@ -147,6 +148,9 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 
 /* ---------- buttons ---------- */
 @property --gradient-angle{syntax:"<angle>";initial-value:0deg;inherits:false}
+/* registered so the one-time attract nudge can transition it; unregistered
+   custom properties are not interpolable */
+@property --pos{syntax:"<percentage>";initial-value:50%;inherits:true}
 @property --gradient-angle-offset{syntax:"<angle>";initial-value:0deg;inherits:false}
 @property --gradient-percent{syntax:"<percentage>";initial-value:5%;inherits:false}
 /* @property initial-value cannot reference a custom property, so this one hex
@@ -154,11 +158,11 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 @property --gradient-shine{syntax:"<color>";initial-value:#C8922C;inherits:false}
 
 .shiny-cta{
-  --shiny-bg:var(--dark);
-  --shiny-bg-subtle:var(--dark-deep);
-  --shiny-fg:var(--light);
-  --shiny-highlight:var(--accent);
-  --shiny-highlight-subtle:var(--accent-deep);
+  --shiny-bg:var(--accent);
+  --shiny-bg-subtle:var(--accent-deep);
+  --shiny-fg:var(--accent-ink);
+  --shiny-highlight:var(--light);
+  --shiny-highlight-subtle:var(--light-raised);
   --anim:hxGradientAngle linear infinite;
   --dur:3s;
   position:relative;isolation:isolate;overflow:hidden;cursor:pointer;
@@ -181,14 +185,14 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
              --gradient-percent 800ms,--gradient-shine 800ms;
 }
 .shiny-cta:hover{--gradient-percent:20%;--gradient-angle-offset:95deg;
-  --gradient-shine:var(--shiny-highlight-subtle);color:var(--light)}
+  --gradient-shine:var(--shiny-highlight-subtle);color:var(--accent-ink)}
 .shiny-cta::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;
   background:radial-gradient(circle at bottom,var(--shiny-bg-subtle) 40%,transparent 70%);
   opacity:.55;mask-image:radial-gradient(circle at bottom,transparent 40%,#000 90%)}
 .shiny-cta::after{content:"";position:absolute;z-index:-1;inset:0;border-radius:inherit;
-  background:linear-gradient(-50deg,transparent,var(--accent),transparent);
+  background:linear-gradient(-50deg,transparent,var(--shiny-highlight),transparent);
   mask-image:radial-gradient(circle at bottom,transparent 40%,#000 90%);
-  opacity:.4;animation:hxShimmer var(--dur) linear infinite}
+  opacity:.3;animation:hxShimmer var(--dur) linear infinite}
 .shiny-cta:hover::before{opacity:.85;animation:hxBreathe 2.4s ease-in-out infinite}
 .shiny-cta:active{transform:translateY(1px)}
 @keyframes hxGradientAngle{to{--gradient-angle:360deg}}
@@ -315,6 +319,7 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 .hx-proof{position:absolute;right:40px;bottom:104px;z-index:2;display:grid;gap:14px;width:252px}
 .hx-proof .hx-panel-t{padding:20px 22px;position:relative}
 .hx-proof strong{display:block;font:400 32px/1.05 var(--font-display);color:var(--accent);
+  font-variant-numeric:tabular-nums;
   position:relative;z-index:1}
 .hx-proof .hx-panel-t > span{font-size:13px;color:var(--on-dark-2);position:relative;z-index:1}
 @media (max-width:1120px){.hx-proof{display:none}}
@@ -367,7 +372,7 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 /* the two faces share one grid cell, so the card is as tall as the longer of
    them and no height has to be hard-coded */
 .hx-flip-in{display:grid;height:100%;transform-style:preserve-3d;
-  transition:transform .9s cubic-bezier(.2,.75,.2,1)}
+  transition:transform 1.9s cubic-bezier(.33,.86,.24,1)}
 .hx-flip-face{grid-area:1/1;display:flex;flex-direction:column;
   padding:26px 24px;border:1px solid var(--line);border-radius:var(--r-card);
   background:var(--light-raised);backface-visibility:hidden}
@@ -388,6 +393,7 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 .hx-decide-tiers h3{margin:14px 0 8px;font-size:19.5px}
 .hx-decide-tiers p{font-size:14.5px;color:var(--muted);margin:0;max-width:none}
 .hx-decide-close{padding-top:8px;font-weight:600;max-width:70ch}
+[data-count]{font-variant-numeric:tabular-nums}
 .hx-reassure{display:flex;align-items:center;gap:9px;margin:16px 0 0;
   font-size:14px;color:var(--on-dark-2)}
 .hx-reassure svg{width:15px;height:15px;flex:none;color:var(--confirm)}
@@ -397,6 +403,8 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 .hx-feature{position:relative;min-height:min(74vh,660px);display:flex;align-items:flex-end;
   overflow:hidden;background:var(--dark-base)}
 .hx-feature-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* taller than the band so the parallax shift never exposes an edge */
+[data-parallax]{height:128%;top:-14%;will-change:translate}
 .hx-feature::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(to top,rgba(12,36,21,.88),rgba(12,36,21,.34) 52%,rgba(12,36,21,.52))}
 .hx-feature-in{position:relative;z-index:2;width:100%;max-width:var(--wrap);margin:0 auto;
@@ -425,6 +433,10 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
   background:var(--light-raised);overflow:hidden;box-shadow:var(--sh-card);
   transition:transform .3s cubic-bezier(.22,.61,.36,1),box-shadow .3s ease}
 .hx-svc:hover{transform:translateY(-6px);box-shadow:var(--sh-lift)}
+/* a tilted card follows the cursor, so it needs a short transition or the
+   rotation smears behind the pointer */
+[data-tilt].hx-svc,[data-tilt].hx-rev-card{transition:transform .16s ease-out,box-shadow .3s ease}
+[data-tilt].hx-rev-card:hover,[data-tilt].hx-svc:hover{box-shadow:var(--sh-lift)}
 .hx-svc img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block}
 .hx-svc-body{padding:24px;display:flex;flex-direction:column;gap:10px;flex:1}
 .hx-svc-body h3{font-family:var(--font-display);font-weight:400;text-transform:uppercase;
@@ -456,6 +468,7 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 .hx-ba-grid--single{grid-template-columns:1fr}
 .hx-ba-grid--single .hx-ba-frame{aspect-ratio:16/9}
 .hx-ba{margin:0}
+.hx-ba.is-nudging{transition:--pos 1.15s cubic-bezier(.4,0,.3,1)}
 .hx-ba-frame{position:relative;aspect-ratio:16/11;border-radius:var(--r-card);overflow:hidden;
   border:1px solid var(--line);box-shadow:var(--sh-img);cursor:ew-resize;touch-action:none;outline:none}
 .hx-ba-frame:focus-visible{box-shadow:0 0 0 3px var(--accent),var(--sh-img)}
@@ -509,6 +522,10 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 .hx-proc-rail{position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--line-soft)}
 .hx-proc-rail i{display:block;width:100%;height:0;background:var(--accent)}
 .hx-proc-row.is-active .hx-proc-rail i{animation:hxGrowV 5s linear forwards}
+/* steps already passed stay filled, so the rail reads as progress through the
+   five rather than resetting on every step */
+.hx-proc-row.is-done .hx-proc-rail i{height:100%;animation:none}
+.hx-proc-row.is-done .hx-proc-num{color:var(--accent-deep)}
 @keyframes hxGrowV{from{height:0}to{height:100%}}
 .hx-proc-panel{position:relative;aspect-ratio:1/1;border-radius:var(--r-process);overflow:hidden;
   border:1px solid var(--line);box-shadow:var(--sh-img)}
@@ -566,6 +583,7 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
 .hx-faq-row{border-top:1px solid var(--line-row)}
 .hx-faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;
   background:none;border:0;padding:22px 0;cursor:pointer;text-align:left;
+  position:sticky;top:calc(var(--nav-h) + 8px);z-index:2;background:var(--light-raised);
   font:400 18.5px/1.3 var(--font-display);text-transform:uppercase;letter-spacing:.01em;
   color:var(--dark)}
 .hx-faq-q i{font:400 26px/1 var(--font-display);color:var(--accent-deep);font-style:normal;
@@ -645,6 +663,9 @@ h2 em,h3 em{font-style:normal;font-weight:800;color:var(--accent-deep)}
   .hx-flip-face{padding:0;border:0;background:none;backface-visibility:visible}
   .hx-flip-back{transform:none}
   .hx-flip-hint{display:none}
+  [data-parallax]{translate:none!important;height:100%;top:0}
+  .hx-ba.is-nudging{transition:none}
+  .hx-proc-row.is-done .hx-proc-rail i{height:100%}
 }
 /* animation-intensity prop: "off" mirrors the block above */
 html[data-motion="off"] *,html[data-motion="off"] *::before,html[data-motion="off"] *::after{

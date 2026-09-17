@@ -30,9 +30,9 @@ system applies the only treatment these need.
 | System: silicone | `system-silicone.webp` | 4/3 | A silicone-coated roof that previously ponded, standing water gone. |
 | System: foam | `system-foam.webp` | 4/3 | SPF being sprayed to build fall toward a drain, before the coat. |
 | System: metal | `system-metal.webp` | 4/3 | Rust treatment and fastener replacement on a panel roof. |
-| Process 1 to 5 | `step-1.webp` … `step-5.webp` | 1/1 square | One per step, in order: arriving on site with survey gear, running the moisture scan, the written scope on the truck hood with the owner, crew detailing seams and penetrations, the finished roof with the warranty paperwork. |
+| Process 1 to 5 | `step-1.webp` … `step-5.webp` | 1/1 square | **Four of the five are labelled placeholders.** | One per step, in order: arriving on site with survey gear, running the moisture scan, the written scope on the truck hood with the owner, crew detailing seams and penetrations, the finished roof with the warranty paperwork. |
 | Parallax | `parallax-fourcorners.webp` | 16/9, min 1800px wide | A wide New Mexico landscape with commercial buildings in it. Recognisable to someone who lives there. |
-| FAQ | `faq.webp` | 4/3 | James or a crew member on a roof, mid-conversation, unposed. |
+| FAQ | `faq.webp` | 4/3 | James or a crew member on a commercial roof, mid-conversation, unposed. Currently a second crop of the owner photo, so this slot and the owner portrait show the same two people until James shoots a real job. |
 | Open Graph | `og-home.webp` | 1200x630 exactly | A hero crop. Do not bake text into it. |
 
 ## If the photography does not exist yet

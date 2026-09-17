@@ -17,9 +17,9 @@ Every ratio here was measured, not eyeballed.
 
 | Token | Value | What it is |
 | --- | --- | --- |
-| `--dark` | `#13351F` | Forest green. Dark sections, nav, footer, primary button fill. |
+| `--dark` | `#13351F` | Forest green. Dark sections, nav, footer, headings on light. |
 | `--light` | `#EEF2EA` | Page ground, tinted with the brand hue. Never `#ffffff`. |
-| `--accent` | `#C8922C` | Gold. Eyebrows, `<em>`, figures, active states, fills. |
+| `--accent` | `#C8922C` | Gold. Primary button fill, eyebrows, `<em>`, figures, active states. |
 | `--ink` | `#141A16` | Headings and body on light grounds. |
 | `--font-display` | Anton | Heavy, condensed, uppercase only above 0.9rem. |
 | `--font-body` | Archivo | Clean grotesque, 400 to 800. |
@@ -55,6 +55,7 @@ Every shadow is tinted with `--dark` or `--dark-base`. None is neutral black.
 | `--accent` as text on `--light` | 2.44:1 | fails by design | correct, fill only |
 | `--accent` as `<em>` on `--dark` | 4.88:1 | 4.5:1 | pass |
 | `--accent-ink` on `--accent` | 5.95:1 | 4.5:1 | pass |
+| `--accent` against `--dark-base` | 6.53:1 | 3:1 non-text | pass |
 | `--muted` on `--light` | 5.27:1 | 4.5:1 | pass |
 | `--light` at .92 alpha on `--dark` | 10.31:1 | 4.5:1 | pass |
 | `--light` at .78 alpha on `--dark` | 7.83:1 | 4.5:1 | pass |
@@ -97,6 +98,38 @@ can read with no problems". The scale, line height and measure are otherwise unt
   in this system and Georgia would be a third typeface, so both were replaced with
   `--light-raised` and `--font-display`.
 
+## Motion
+
+Nine motion behaviours, all of them off under `prefers-reduced-motion: reduce`.
+The CSS-only ones fall to the global `animation:none;transition:none` rule; the
+five driven by script check the media query and return before doing anything.
+
+| Behaviour | Where | Driven by |
+| --- | --- | --- |
+| Reveal on scroll | every `[data-anim]` block | IntersectionObserver adds `is-in` |
+| Ken Burns | hero and featured backdrops | CSS keyframes |
+| Card flip | decision tiers | CSS `rotateY`, 1.9s, hover on pointer devices and a button everywhere else |
+| Count up | the two stat figures | script, 1.4s ease-out cubic, once per figure |
+| Cumulative rail | process steps | script adds `is-done` to steps behind the active one |
+| Attract nudge | before/after slider | script, three positions, once, abandoned the moment a person drags |
+| Magnetic tilt | hero panels, service and review cards | script, pointer position, `hover:hover and pointer:fine` only |
+| Parallax | featured band backdrop | script sets `translate`, which composes with the Ken Burns `transform` |
+| Staggered rows | comparison table | `[data-anim="fade"]` with 70ms steps, our column 35ms ahead of theirs |
+
+Two of these need a note.
+
+**The parallax uses `translate`, not `transform`.** The same element already runs
+a Ken Burns `transform` animation, and a script-set `transform` would replace it.
+The separate `translate` property applies before `transform` and composes with
+it, so both run. `tools/visual-qa.js` asserts the computed `transform` is still
+a matrix after the parallax has moved, so this cannot silently regress.
+
+**The sticky FAQ question earns almost nothing at current answer lengths.** It is
+implemented and correct: the question pins at `--nav-h` plus 8px while its own
+row passes. But the tallest open row is 207px against an 844px phone viewport, so
+the whole question and answer fit on screen and the question never needs to
+stick. It is kept because it costs nothing and starts paying the moment an answer
+grows past a screen. Nobody should expect to see it today.
 
 ## The flag convention
 

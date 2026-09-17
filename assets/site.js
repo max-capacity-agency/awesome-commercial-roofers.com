@@ -62,21 +62,56 @@
     }
   }
 
-  /* ---------- tilt on the hero proof cards ---------- */
-  if (!reduced) {
+  /* ---------- magnetic tilt: hero proof cards, service and review cards ----------
+     The card keeps whatever lift its hover rule gives it, because an inline
+     transform would otherwise cancel that rule out. */
+  if (!reduced && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
     Array.prototype.forEach.call(document.querySelectorAll('[data-tilt]'), function (el) {
+      var lift = parseFloat(el.getAttribute('data-tilt-lift') || '0') || 0;
+      var at = function (rx, ry, ty) {
+        el.style.transform = 'perspective(700px) rotateX(' + rx.toFixed(2) +
+          'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(' + ty.toFixed(2) + 'px)';
+      };
       el.addEventListener('mousemove', function (e) {
         var r = el.getBoundingClientRect();
         var x = (e.clientX - r.left) / r.width - 0.5;
         var y = (e.clientY - r.top) / r.height - 0.5;
-        el.style.transform = 'perspective(600px) rotateX(' + (-y * 8).toFixed(2) +
-          'deg) rotateY(' + (x * 10).toFixed(2) + 'deg)';
+        at(-y * 6, x * 7, lift);
       });
-      el.addEventListener('mouseleave', function () {
-        el.style.transform = 'perspective(600px) rotateX(0) rotateY(0)';
-      });
+      el.addEventListener('mouseleave', function () { at(0, 0, 0); });
     });
   }
+
+  /* ---------- stat figures count up once, when they arrive ---------- */
+  (function () {
+    var nums = document.querySelectorAll('[data-count]');
+    if (!nums.length) return;
+    if (reduced || !('IntersectionObserver' in window)) return;   // markup already shows the final value
+    var run = function (el) {
+      var target = parseFloat(el.getAttribute('data-count'));
+      if (isNaN(target)) return;
+      var dur = 1400, t0 = null;
+      var step = function (t) {
+        if (t0 === null) t0 = t;
+        var p = Math.min(1, (t - t0) / dur);
+        /* ease-out cubic: fast first, settles on the number rather than
+           arriving at full speed */
+        var v = Math.round(target * (1 - Math.pow(1 - p, 3)));
+        el.textContent = v.toLocaleString('en-US');
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = target.toLocaleString('en-US');
+      };
+      requestAnimationFrame(step);
+    };
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        io.unobserve(en.target);
+        run(en.target);
+      });
+    }, { threshold: 0.6 });
+    Array.prototype.forEach.call(nums, function (el) { io.observe(el); });
+  })();
 
   /* ---------- decision tiers: flip cards ----------
      Pointer devices flip on hover in CSS. Everything else, touch and keyboard
@@ -137,6 +172,32 @@
     frame.addEventListener('pointermove', function (e) { if (down) fromEvent(e); });
     frame.addEventListener('pointerup', function () { down = false; });
     frame.addEventListener('pointercancel', function () { down = false; });
+    /* A slider nobody drags is a static photo. Nudge it once when it arrives,
+       and never again, and abandon the nudge the moment a person takes over. */
+    var touched = false;
+    ['pointerdown', 'keydown'].forEach(function (ev) {
+      frame.addEventListener(ev, function () { touched = true; fig.classList.remove('is-nudging'); }, true);
+    });
+    if (!reduced && 'IntersectionObserver' in window) {
+      var nio = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        nio.disconnect();
+        if (touched) return;
+        fig.classList.add('is-nudging');
+        var frames = [70, 32, 50], k = 0;
+        var tick = function () {
+          if (touched || k >= frames.length) {
+            if (!touched) setTimeout(function () { fig.classList.remove('is-nudging'); }, 1200);
+            return;
+          }
+          set(frames[k++]);
+          setTimeout(tick, 1150);
+        };
+        setTimeout(tick, 450);
+      }, { threshold: 0.55 });
+      nio.observe(frame);
+    }
+
     frame.addEventListener('keydown', function (e) {
       var now = parseFloat(frame.getAttribute('aria-valuenow'));
       if (e.key === 'ArrowLeft') { set(now - 4); e.preventDefault(); }
@@ -162,6 +223,7 @@
       i = (n + rows.length) % rows.length;
       rows.forEach(function (r, k) {
         r.classList.toggle('is-active', k === i);
+        r.classList.toggle('is-done', k < i);
         var t = r.querySelector('.hx-proc-title');
         if (t) t.classList.toggle('is-active', k === i);
       });
@@ -232,6 +294,38 @@
       if (btn.nextElementSibling) btn.nextElementSibling.classList.toggle('is-open', !open);
     });
   });
+
+  /* ---------- parallax: the featured band's backdrop drifts as it passes ----------
+     Set through `translate`, not `transform`, so it composes with the Ken Burns
+     transform animation already running on the same element instead of
+     replacing it. */
+  (function () {
+    var layers = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+    if (!layers.length || reduced) return;
+    var queued = false;
+    var paint = function () {
+      queued = false;
+      var vh = window.innerHeight;
+      layers.forEach(function (el) {
+        var band = el.parentElement;
+        var r = band.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        var range = parseFloat(el.getAttribute('data-parallax')) || -60;
+        /* -1 when the band is just below the fold, +1 when it has just left */
+        var p = 1 - 2 * ((r.top + r.height / 2) / (vh + r.height));
+        p = Math.max(-1, Math.min(1, p));
+        el.style.translate = '0 ' + (p * range).toFixed(1) + 'px';
+      });
+    };
+    var onScroll = function () {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(paint);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    paint();
+  })();
 
   /* ---------- footer year ---------- */
   var yr = document.querySelector('[data-year]');
